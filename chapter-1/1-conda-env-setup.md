@@ -1,6 +1,3 @@
-## Chapter 1:
-Introductory chapter covering the basics of Machine Learning, the core tools used in ML, and setting up the local environment for implementations.
-
 ### Environment setup using Anaconda (Windows)
 1. Install *[Anaconda Navigator](https://www.anaconda.com/download)*.
 2. Open *Anaconda Prompt*.
