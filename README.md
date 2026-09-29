@@ -1,14 +1,16 @@
-This repository documents my personal learning journey in machine learning.
+This repository documents my learning journey in machine learning.
 
-I am using the book *[Introduction to Machine Learning with Python by Andreas C. Müller & Sarah Guido](https://www.oreilly.com/library/view/introduction-to-machine/9781449369880)* as my primary reference. Along with the book, I am also following the Coursera course *[Applied Machine Learning in Python by University of Michigan](https://www.coursera.org/learn/python-machine-learning)* to strengthen my conceptual understanding and get additional practical exposure.
+I am using the book *[Introduction to Machine Learning with Python](https://www.oreilly.com/library/view/introduction-to-machine/9781449369880)* by Andreas C. Müller and Sarah Guido as one of my primary references.
+Along with the book, I am following the [Applied Machine Learning in Python](https://www.coursera.org/learn/python-machine-learning) course by the University of Michigan for additional practice and understanding.
 
-Before diving deep into machine learning, I built my foundation in the core scientific Python libraries using the SciPy Lecture Notes:
-- NumPy - http://scipy-lectures.org/intro/numpy
-- SciPy - http://scipy-lectures.org/intro/scipy.html
-- Matplotlib - http://scipy-lectures.org/intro/matplotlib
+I am also using *[Hands-On Machine Learning with Scikit-Learn & TensorFlow, 3rd Edition](https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967)* by Aurélien Géron as another reference.
+In addition, I am following the [Machine Learning Specialization](https://www.deeplearning.ai/specializations/machine-learning) by DeepLearning.AI.
 
-These resources were extremely helpful, especially as someone starting with little to no prior exposure to these libraries.
+Before starting with machine learning, I covered the basics of the core scientific Python libraries using the [SciPy Lecture Notes](http://scipy-lectures.org/):
+* [NumPy](http://scipy-lectures.org/intro/numpy)
+* [SciPy](http://scipy-lectures.org/intro/scipy.html)
+* [Matplotlib](http://scipy-lectures.org/intro/matplotlib)
 
-I am maintaining this repository to track my understanding through code, experiments, and short notes.
+This repository contains my code, experiments, and notes as I learn.
 
-This repository will evolve as my understanding improves.
+It will be updated as I progress.
