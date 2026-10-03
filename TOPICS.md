@@ -6,7 +6,8 @@
 - Regression
     - Linear Regression
         - with One Variable
-        - Cost Function
+        - Cost/Loss Function
+            - Squared Error
         - Gradient Descent
         - with Multiple Variables
         - Vectorization
@@ -17,11 +18,12 @@
     - Polynomial Regression
 - Classification
     - Logistic Regression
+        - Sigmoid/Logistic Function
+        - Decision Boundary
+        - Cost/Loss Function
+    - Overfitting
+        - Feature Selection
+        - Regularization
     - Binary Classification
-    - Decision Boundary
-3. Unsupervised Learning
-- Clustering
-- Anomaly Detection
-- Dimensionality Reduction
 ### Course 2
 ### Course 3
