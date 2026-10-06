@@ -26,4 +26,6 @@
         - Regularization
     - Binary Classification
 ### Course 2
+- Neural Networks
+- Decision Trees
 ### Course 3
