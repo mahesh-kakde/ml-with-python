@@ -272,54 +272,178 @@ def plot_widget():
         final_data = line.data + final_data
 
 
-    p0 = np.array([rotating_line.data[0]['x'][0],rotating_line.data[0]['y'][0]])
-    p1 = np.array([rotating_line.data[0]['x'][1],rotating_line.data[0]['y'][1]])
-    def update_orthogonal_line(i,p,o):
-        fig.data[i]['x'] = np.array([p[0],o[0]])
-        fig.data[i]['y'] = np.array([p[1],o[1]])
+    # p0 = np.array([rotating_line.data[0]['x'][0],rotating_line.data[0]['y'][0]])
+    # p1 = np.array([rotating_line.data[0]['x'][1],rotating_line.data[0]['y'][1]])
+    # def update_orthogonal_line(i,p,o):
+    #     fig.data[i]['x'] = np.array([p[0],o[0]])
+    #     fig.data[i]['y'] = np.array([p[1],o[1]])
 
-    n_line = (1,0)
+    # n_line = (1,0)
+
+    # def update(angle):
+    #     ang = angle
+    #     with fig.batch_update():
+    #         p0r = rotation_matrix(ang)@p0
+    #         p1r = rotation_matrix(ang)@p1
+    #         # This is the normal vector to the rotated line. 
+    #         if abs(p0r[0] - p1r[0]) < 1e-10:
+    #             n_line = (1,0)
+    #         else:
+    #             n_line = (-(p0r[1] - p1r[1])/(p0r[0] - p1r[0]), 1)
+
+    #     # The code below just update every plot we just created above
+    #         orthogonal_to_line = orthogonal_set_projection(X,n_line)
+    #         dispatches_args = enumerate(zip(X,orthogonal_to_line))
+    #         for i,(o,p) in dispatches_args:
+    #             fig.data[i]['x'] = np.array([p[0],o[0]])
+    #             fig.data[i]['y'] = np.array([p[1],o[1]])
+    #         fig.data[-2]['x'] = np.array([p0r[0],p1r[0]])
+    #         fig.data[-2]['y'] = np.array([p0r[1],p1r[1]])
+    #         fig.data[-1]['x'] = orthogonal_to_line[:,0]
+    #         fig.data[-1]['y'] = orthogonal_to_line[:,1]
+    #         projection_plot_1d = get_plane_base(orthogonal_to_line,n_line)
+    #         rhs_fig.data[1]['x'] = np.array(projection_plot_1d[:,0])
+
+    # #     projection_plot_1d = get_plane_base(orthogonal_to_line,n_line)
+    # #     rhs_scatter.data_source.data['x'] = projection_plot_1d[:,0]
+
+
+
+
+
+
+    # freq_slider = interactive(update, angle=(0, 180, 1))        
+    # fig = go.FigureWidget(data = final_data ).update_yaxes(scaleanchor = 'x', scaleratio= 1, range = [-1,1], visible=False).update_xaxes(range = [-1.5,1.5], visible=False)
+    # rhs_fig = go.FigureWidget(data = rhs_line.data + rhs_scatter.data).update_yaxes(scaleanchor = 'x', scaleratio= 1, range = [-1,1], showgrid=False, visible=False).update_xaxes(range = [-1.5,1.5], showgrid=False, visible=False)
+
+    # rhs_fig.update_layout(dict(width = 500, height = 400, plot_bgcolor = 'rgba(0,0,0,0)', title="PCA Projection"))
+
+    # fig.update_layout(dict(width = 500, height = 570, plot_bgcolor = 'rgba(0,0,0,0)'))
+
+    # vb = HBox((fig,(VBox(( freq_slider,rhs_fig)))))
+    # #vb.layout.align_items = 'center'
+    # return vb
+
+    p0 = np.array([
+        rotating_line.data[0]['x'][0],
+        rotating_line.data[0]['y'][0]
+    ])
+
+    p1 = np.array([
+        rotating_line.data[0]['x'][1],
+        rotating_line.data[0]['y'][1]
+    ])
+
+    # Create the FigureWidgets BEFORE interactive() calls update()
+    fig = go.FigureWidget(
+        data=final_data
+    ).update_yaxes(
+        scaleanchor='x',
+        scaleratio=1,
+        range=[-1, 1],
+        visible=False
+    ).update_xaxes(
+        range=[-1.5, 1.5],
+        visible=False
+    )
+
+    rhs_fig = go.FigureWidget(
+        data=rhs_line.data + rhs_scatter.data
+    ).update_yaxes(
+        scaleanchor='x',
+        scaleratio=1,
+        range=[-1, 1],
+        showgrid=False,
+        visible=False
+    ).update_xaxes(
+        range=[-1.5, 1.5],
+        showgrid=False,
+        visible=False
+    )
+
+    def update_orthogonal_line(i, p, o):
+        fig.data[i]['x'] = np.array([p[0], o[0]])
+        fig.data[i]['y'] = np.array([p[1], o[1]])
 
     def update(angle):
         ang = angle
+
         with fig.batch_update():
-            p0r = rotation_matrix(ang)@p0
-            p1r = rotation_matrix(ang)@p1
-            # This is the normal vector to the rotated line. 
+
+            p0r = rotation_matrix(ang) @ p0
+            p1r = rotation_matrix(ang) @ p1
+
+            # Normal vector to the rotated line
             if abs(p0r[0] - p1r[0]) < 1e-10:
-                n_line = (1,0)
+                n_line = (1, 0)
             else:
-                n_line = (-(p0r[1] - p1r[1])/(p0r[0] - p1r[0]), 1)
+                n_line = (
+                    -(p0r[1] - p1r[1]) /
+                    (p0r[0] - p1r[0]),
+                    1
+                )
 
-        # The code below just update every plot we just created above
-            orthogonal_to_line = orthogonal_set_projection(X,n_line)
-            dispatches_args = enumerate(zip(X,orthogonal_to_line))
-            for i,(o,p) in dispatches_args:
-                fig.data[i]['x'] = np.array([p[0],o[0]])
-                fig.data[i]['y'] = np.array([p[1],o[1]])
-            fig.data[-2]['x'] = np.array([p0r[0],p1r[0]])
-            fig.data[-2]['y'] = np.array([p0r[1],p1r[1]])
-            fig.data[-1]['x'] = orthogonal_to_line[:,0]
-            fig.data[-1]['y'] = orthogonal_to_line[:,1]
-            projection_plot_1d = get_plane_base(orthogonal_to_line,n_line)
-            rhs_fig.data[1]['x'] = np.array(projection_plot_1d[:,0])
+            orthogonal_to_line = orthogonal_set_projection(
+                X, n_line
+            )
 
-    #     projection_plot_1d = get_plane_base(orthogonal_to_line,n_line)
-    #     rhs_scatter.data_source.data['x'] = projection_plot_1d[:,0]
+            dispatches_args = enumerate(
+                zip(X, orthogonal_to_line)
+            )
 
+            for i, (o, p) in dispatches_args:
+                fig.data[i]['x'] = np.array([p[0], o[0]])
+                fig.data[i]['y'] = np.array([p[1], o[1]])
 
+            fig.data[-2]['x'] = np.array([
+                p0r[0], p1r[0]
+            ])
 
+            fig.data[-2]['y'] = np.array([
+                p0r[1], p1r[1]
+            ])
 
+            fig.data[-1]['x'] = orthogonal_to_line[:, 0]
+            fig.data[-1]['y'] = orthogonal_to_line[:, 1]
 
+            projection_plot_1d = get_plane_base(
+                orthogonal_to_line,
+                n_line
+            )
 
-    freq_slider = interactive(update, angle=(0, 180, 1))        
-    fig = go.FigureWidget(data = final_data ).update_yaxes(scaleanchor = 'x', scaleratio= 1, range = [-1,1], visible=False).update_xaxes(range = [-1.5,1.5], visible=False)
-    rhs_fig = go.FigureWidget(data = rhs_line.data + rhs_scatter.data).update_yaxes(scaleanchor = 'x', scaleratio= 1, range = [-1,1], showgrid=False, visible=False).update_xaxes(range = [-1.5,1.5], showgrid=False, visible=False)
+            rhs_fig.data[1]['x'] = np.array(
+                projection_plot_1d[:, 0]
+            )
 
-    rhs_fig.update_layout(dict(width = 500, height = 400, plot_bgcolor = 'rgba(0,0,0,0)', title="PCA Projection"))
+            rhs_fig.data[1]['y'] = np.array(
+                projection_plot_1d[:, 1]
+            )
 
-    fig.update_layout(dict(width = 500, height = 570, plot_bgcolor = 'rgba(0,0,0,0)'))
+    # Create interactive widget AFTER fig and rhs_fig exist
+    freq_slider = interactive(
+        update,
+        angle=(0, 180, 1)
+    )
 
-    vb = HBox((fig,(VBox(( freq_slider,rhs_fig)))))
-    #vb.layout.align_items = 'center'
+    rhs_fig.update_layout(
+        dict(
+            width=500,
+            height=400,
+            plot_bgcolor='rgba(0,0,0,0)',
+            title="PCA Projection"
+        )
+    )
+
+    fig.update_layout(
+        dict(
+            width=500,
+            height=570,
+            plot_bgcolor='rgba(0,0,0,0)'
+        )
+    )
+
+    vb = HBox(
+        (fig, VBox((freq_slider, rhs_fig)))
+    )
+
     return vb

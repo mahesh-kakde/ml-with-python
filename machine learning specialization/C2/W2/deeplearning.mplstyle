@@ -121,4 +121,3 @@ font.monospace:  DejaVu Sans Mono, Bitstream Vera Sans Mono, Computer Modern Typ
 ## See https://matplotlib.org/api/artist_api.html#module-matplotlib.text
 ## for more information on text properties
 #text.color: black
-

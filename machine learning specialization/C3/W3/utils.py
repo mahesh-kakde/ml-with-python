@@ -146,4 +146,3 @@ def generate_visualization(terminal_left_reward, terminal_right_reward, each_ste
     
     plot_optimal_policy_return(num_states, optimal_policy, rewards, V)
     plot_q_values(num_states, q_left_star, q_right_star, rewards)
-    
