@@ -27,5 +27,7 @@
     - Binary Classification
 ### Course 2
 - Neural Networks
+    - Forward Propagation
+    - TensorFlow
 - Decision Trees
 ### Course 3
